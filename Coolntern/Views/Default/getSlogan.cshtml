@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Coolntern.Models.Slogan>
+
+@foreach (var i in Model)
+{
+    <!-- Single Testimonial -->
+    <div class="single-testimonial text-center">
+        <!-- Testimonial Content -->
+        <div class="testimonial-caption ">
+            <!-- founder -->
+            <div class="testimonial-founder  ">
+                <div class="founder-img mb-30">
+                    <img src="~/Content/upload/img/slogan/@i.image" alt="">
+                    <span>@i.name</span>
+                    <p>@i.job</p>
+                </div>
+            </div>
+            <div class="testimonial-top-cap">
+                <p>@i.message</p>
+            </div>
+        </div>
+    </div>
+}

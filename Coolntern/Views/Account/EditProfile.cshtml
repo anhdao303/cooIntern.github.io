@@ -1,0 +1,128 @@
+﻿@model Coolntern.ViewModel.EditProfile
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Header
+{
+    <link href="~/Content/css/styleSettings.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+}
+
+<style>
+    input{
+        width: 100%;
+        height: 25px;
+    }
+</style>
+
+<div class="container page">
+    <h1 style="text-align:center">MY PROFILE</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="container upload rounded mt-5 mb-5">
+                    <!-- Account page navigation-->
+                    <nav class="nav nav-borders">
+                        <a class="nav-link active ms-0" href="/chinh-sua-thong-tin" target="_self" style="color: black;">Profile</a>
+                        <a class="nav-link" href="/doi-mat-khau" style="color: black;">Security</a>
+                    </nav>
+                    <hr class="mt-0 mb-4">
+                    <div class="row">
+                        <div class="col-md-3 border-right">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                <input type='file' onchange="readURL(this);" accept=".jpg,.png,.gif,.jpeg,.bmp" name="avatar" />
+                                <img id="blah" class="rounded-circle mt-5" width="150px" src="~/Content/upload/img/avatar/@Model.Avatar" alt="your image" />
+                                @*<input type='file' onchange="readURL(this);" />*@
+
+                                <span class="font-weight-bold mt-4" style="font-size: 14px">@Model.Name</span>
+                                <span> </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 border-right">
+                            <div class="p-3 py-5">
+                                <div class="row mt-3">
+                                    <div class="form-group col-lg-12">
+                                        @Html.Label("Name", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Address", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Phone number", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("GPA", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.GPA, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.GPA, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Training point", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.TrainingPoint, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.TrainingPoint, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Major", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Major, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Major, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 py-5">
+                                <div class="form-group">
+                                    @Html.Label("Experience", htmlAttributes: new { @class = "control-label" })
+                                    @Html.TextAreaFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control col-md-12 textarea", @col="10"} })
+                                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Additional Details", htmlAttributes: new { @class = "control-label" })
+                                    @Html.TextAreaFor(model => model.Details, new { htmlAttributes = new { @class = "form-control textarea" } })
+                                    @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 text-center">
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section _Footer
+{
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -1,0 +1,102 @@
+﻿<!-- Left content -->
+<div class="col-xl-3 col-lg-3 col-md-4">
+    <!-- Job Category Listing start -->
+    <div class="job-category-listing mb-50">
+        <!-- single one -->
+        <div class="single-listing">
+            <div class="small-section-tittle2">
+                <h4>Công việc của bạn</h4>
+            </div>
+            <!-- Select job items start -->
+            <div class="select-job-items2">
+                <select name="select" id="Job" class="mb-5">
+                    <option value="0" class="list-category">Tất cả</option>
+                    <option value="1" class="list-category">Đã duyệt</option>
+                    <option value="2" class="list-category">Chưa duyệt</option>
+                    <option value="3" class="list-category">Từ chối</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var title = $(".title")
+    var dataJob = $(".data-job")
+
+    $(document).ready(function () {
+        $("#Job").change(function () {
+            let job = $("#Job").val()
+
+            if (job == 1) {
+                getJobApproval()
+            }
+            if(job == 0) {
+                getAllJob()
+            }
+            if (job == 2) {
+                getJobWaitApproval()
+            }
+            if (job == 3) {
+                getJobDeny()
+            }
+        })
+    })
+
+    function getAllJob() {
+        $.ajax({
+            url: '@Url.Action("GetAllJobApply", "DetailJob")',
+            type: 'GET',
+            success: function (data) {
+                $(".title").html("Tất cả công việc đã apply")
+                $(".data-job").html(data)
+            },
+            fail: function () {
+                alert("Something went wrong")
+            },
+        })
+    }
+
+    function getJobApproval() {
+        $.ajax({
+            url: '@Url.Action("GetAllJobApproval", "DetailJob")',
+            type: 'GET',
+            success: function (data) {
+                $(".title").html("Công việc đã được duyệt")
+                $(".data-job").html(data)
+            },
+            fail: function (data) {
+                alert("Something went wrong")
+            },
+        })
+    }
+
+    function getJobWaitApproval() {
+        $.ajax({
+            url: '@Url.Action("GetAllJobWaitApproval", "DetailJob")',
+            type: 'GET',
+            success: function (data) {
+                $(".title").html("Công việc chưa duyệt qua")
+                $(".data-job").html(data)
+            },
+            fail: function (data) {
+                alert("Something went wrong")
+            },
+        })
+    }
+
+    function getJobDeny() {
+        $.ajax({
+            url: '@Url.Action("GetJobDeny", "DetailJob")',
+            type: 'GET',
+            success: function (data) {
+                $(".title").html("Công việc không được duyệt")
+                $(".data-job").html(data)
+            },
+            fail: function (data) {
+                alert("Something went wrong")
+            },
+        })
+    }
+
+</script>

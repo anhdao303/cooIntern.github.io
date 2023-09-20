@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef4b863b49f84317bf07099aaaa0cd4f" Name="Diagram1">
+        <EntityTypeShape EntityType="CoolnternModel.AspNetRole" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.AspNetUser" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Banner" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Category" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.DetailJob" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Footer" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Job" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Logo" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Menu" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.NCategory" Width="1.5" PointX="8.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.News" Width="1.5" PointX="11" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Process" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoolnternModel.Slogan" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="CoolnternModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.fk_user_id_detail_job" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.fk_job_category" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.fk_job_id_detail_job" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.fk_news_category" ManuallyRouted="false" />
+        <AssociationConnector Association="CoolnternModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

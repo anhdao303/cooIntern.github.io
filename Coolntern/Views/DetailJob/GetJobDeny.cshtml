@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Coolntern.Models.DetailJob>
+
+@foreach (var i in Model)
+{
+    <div class="single-job-items mb-30">
+        <div class="job-items">
+            <div class="company-img">
+                <a href="/@ViewBag.meta/@i.Job.Category.meta/@i.Job.meta"><img src="~/Content/upload/img/job/@i.Job.image" alt=""></a>
+            </div>
+            <div class="job-tittle">
+                <a href="/@ViewBag.meta/@i.Job.Category.meta/@i.Job.meta"><h4>@i.Job.name</h4></a>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i>@i.Job.location</li>
+                    <li>$@i.Job.salary</li>
+                </ul>
+            </div>
+        </div>
+        <div class="items-link f-right">
+            <form method="post" action="/cong-viec-cua-ban/tu-choi">
+                <input type="text" name="jobId" value="@i.id_job" style="display: none;" />
+                <input type="submit" value="Từ chối" class="mbtn" />
+            </form>
+        </div>
+    </div>
+}

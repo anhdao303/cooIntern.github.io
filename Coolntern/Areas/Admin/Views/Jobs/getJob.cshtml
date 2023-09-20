@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Coolntern.Models.Job>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover" id="dataTables-example" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Tên
+                </th>
+                <th>
+                    Tên công ty
+                </th>
+                <th>
+                    Lương
+                </th>
+                <th>
+                    Vị trí
+                </th>
+           
+                <th>
+                    Ngày ứng tuyển
+                </th>
+                <th>
+                    Ngành
+                </th>
+                <th width="22%"  style="text-align:center">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{var index = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw(index++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nameCompany)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.salary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.location)
+                    </td>
+                    <td>
+                        @item.dateapply.GetValueOrDefault().ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.name)
+                    </td>
+                    <td style="text-align: center">
+                        <span>
+                            <a href="@Url.Action("Edit", "Jobs", new { id = item.id })" class="btn btn-warning">
+                                <i class="fas fa-edit"></i>    Sửa
+                            </a>
+                        </span>
+                        <span>
+                            <a data-target="#DeleteModal-@item.id" data-toggle="modal" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>    Xóa
+                            </a>
+                            @using (Html.BeginForm("Delete/" + item.id, "Jobs", FormMethod.Post, null))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="modal form-actions" tabindex="-1" role="dialog" id="DeleteModal-@item.id">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Xác nhận xóa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn có chắc chắn muốn xóa công việc này không?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                                <button type="submit" class="btn btn-danger">có</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </span>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#dataTables-example").DataTable({
+            responsive: true
+        })
+    })
+</script>

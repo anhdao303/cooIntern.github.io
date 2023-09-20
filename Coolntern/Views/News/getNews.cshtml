@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Coolntern.Models.News>
+
+@foreach (var i in Model)
+{
+    <article class="blog_item">
+        <div class="blog_item_img">
+            <img class="card-img rounded-0" src="~/Content/upload/img/news/@i.image" alt="" >
+            <a href="#" class="blog_item_date">
+                <h3>@i.datebegin.GetValueOrDefault().Day</h3>
+                <p>@i.datebegin.GetValueOrDefault().Month</p>
+            </a>
+        </div>
+
+        <div class="blog_details">
+            <a class="d-inline-block" href="/@ViewBag.meta/@i.NCategory.meta/@i.meta">
+                <h2>@i.name</h2>
+            </a>
+            <p>
+                @i.desciption
+            </p>
+            <ul class="blog-info-link">
+                <li><i class="fa fa-user"></i> Travel, Lifestyle</li>
+            </ul>
+        </div>
+    </article>
+}
+
+

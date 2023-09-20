@@ -1,0 +1,95 @@
+﻿@model Coolntern.ViewModel.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<style>
+    .btn-login {
+        width: 100%;
+    }
+
+        .btn-login:hover {
+            color: #000;
+            background-color: #fff;
+        }
+</style>
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewData["url"] }, FormMethod.Post, ""))
+{
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <div class="row">
+                                            @{ Html.RenderAction("getLogo", "Temp");}
+                                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">SIGN IN TO YOUR ACCOUNT</h3>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-outline mb-4">
+                                        @Html.LabelFor(temp => temp.Username)
+                                        @Html.TextBoxFor(temp => temp.Username, new { placeholer = "Username", @class = "form-control" })
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        @Html.LabelFor(temp => temp.Password)
+                                        @Html.PasswordFor(temp => temp.Password, new { placeholer = "Password", @class = "form-control" })
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-danger">
+                                            @Html.ValidationSummary()
+                                        </div>
+                                        <div class="col-md-4"></div>
+
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <input type="submit" value="Login" class="btn btn-dark btn-lg btn-block" />
+
+                                    </div>
+
+                                    <div class="row">
+                                        <a class="btn btn-outline-dark btn-login" href="@ViewBag.GoogleSignIn" role="button" style="text-transform:none">
+                                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                            Login with Google
+                                        </a>
+
+                                        <a class="btn btn-outline-dark btn-login my-2" href="/Account/Facebook" role="button" style="text-transform:none">
+                                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/768px-Facebook_f_logo_%282021%29.svg.png?20210818083032" />
+                                            Login with Facebook
+                                        </a>
+
+                                    </div>
+
+                                    <a class="small text-muted" href="#!">Forgot password?</a>
+
+                                    <p class="mb-5 pb-lg-2 text-muted" style="color: #393f81;">
+                                        Don't have an account? <a href="@Url.Action("Register", "Account")"
+                                                                  style="color: #393f81;">Register here</a>
+                                    </p>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

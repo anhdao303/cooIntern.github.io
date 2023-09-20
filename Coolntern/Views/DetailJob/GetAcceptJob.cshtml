@@ -1,0 +1,75 @@
+﻿@model Coolntern.ViewModel.ApplyJob
+
+@{
+    ViewBag.Title = "GetAcceptJob";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="job-post-company pt-120 pb-120">
+    <div class="container">
+        <div class="row justify-content-between">
+            <!-- Left Content -->
+            <div class="col-xl-7 col-lg-8">
+                <!-- job single -->
+                <div class="single-job-items mb-50">
+                    <div class="job-items">
+                        <div class="company-img company-img-details">
+                            <a href="#"><img src="~/Content/upload/img/job/@Model.ImageJob" alt=""></a>
+                        </div>
+                        <div class="job-tittle">
+                            <a href="#">
+                                <h4>@Model.NameJob</h4>
+                            </a>
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>@Model.LocationJob</li>
+                                <li>$@Model.Salary</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- job single End -->
+
+                <div class="job-post-details">
+                    <div class="post-details1 mb-50">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Job Description</h4>
+                        </div>
+                        <p>@Html.Raw(@Model.Description)</p>
+                    </div>
+                    <div class="post-details2  mb-50">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Required Knowledge, Skills, and Abilities</h4>
+                        </div>
+                        <ul>
+                            @foreach (var i in Model.Requirement.Split('-'))
+                            {
+                                <li><p>@i</p></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Right Content -->
+            <div class="col-xl-4 col-lg-4">
+                <div class="post-details3  mb-50">
+                    <!-- Small Section Tittle -->
+                    <div class="small-section-tittle text-center my-3">
+                        <h1>Thông tin lưu ý</h1>
+                    </div>
+                    <ul>
+                        <p>Name: <span>@Model.NameCompany </span></p>
+                        <p>Web : <span> @Model.NameCompany .com</span></p>
+                        <p>Posted date : <span>@Model.Dateapply.GetValueOrDefault().ToShortDateString()</span></p>
+                        <p>Lưu ý : <span>@Html.Raw(Model.Message)</span></p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

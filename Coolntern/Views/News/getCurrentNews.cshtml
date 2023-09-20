@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Coolntern.Models.News>
+
+@foreach (var i in Model)
+{
+    <div class="media post_item">
+        <img src="~/Content/upload/img/news/@i.image" alt="post" style="width:20%">
+        <div class="media-body">
+            <a href="/@ViewBag.meta/@i.NCategory.meta/@i.meta">
+                <h3>@i.name</h3>
+            </a>
+            <p>@i.datebegin.GetValueOrDefault().ToLongDateString()</p>
+        </div>
+    </div>
+}
+

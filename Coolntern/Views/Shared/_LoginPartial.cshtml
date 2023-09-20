@@ -1,0 +1,24 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="header-btn d-none f-right d-lg-block" >
+        <a class="nav-link dropdown-toggle user-dropdown-link"  href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mx-3" style="color: black; font-size: 12px;">Welcome @Session["Name"]</span>
+            <img src="~/Content/upload/img/avatar/@Session["Avatar"]" alt="avatar" style="width: 50px; height: 50px; border-radius: 50px;">
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" style="font-size: 16px;" aria-labelledby="userDropdown" >
+            <a class="dropdown-item" href="/cong-viec-cua-ban"> &nbsp; My Account</a>
+            <a class="dropdown-item" href="/chinh-sua-thong-tin"> &nbsp; Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/dang-xuat"><i class="fas fa-fw fa-sign-out-alt"></i> &nbsp; Logout</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="header-btn d-none f-right d-lg-block">
+        <a href="/dang-ki" class="btn head-btn1">Register</a>
+        <a href="/dang-nhap" class="btn head-btn2">Login</a>
+    </div>
+}

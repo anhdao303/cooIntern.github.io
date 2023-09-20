@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Coolntern.Models.Job>
+
+@if(Model.Count() == 0)
+{
+    <h4 class="my-3" style="margin-top: 10px;">Nothing</h4>
+}    
+
+@foreach (var i in Model)
+{
+    <div class="single-job-items mb-30">
+        <div class="job-items">
+            <div class="company-img">
+                <a href="/@ViewBag.meta/@i.Category.meta/@i.meta"><img src="~/Content/upload/img/job/@i.image" alt=""></a>
+            </div>
+            <div class="job-tittle">
+                <a href="/@ViewBag.meta/@i.Category.meta/@i.meta"><h4>@i.name</h4></a>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i>@i.location</li>
+                    <li>$@i.salary</li>
+                </ul>
+            </div>
+        </div>
+        <div class="items-link f-right">
+            <a href="/@ViewBag.meta/@i.Category.meta/@i.meta">Detail</a>
+            <h4>@DateTime.Now.Subtract(i.datebegin.GetValueOrDefault()).Hours hours ago</h4>
+        </div>
+    </div>
+}

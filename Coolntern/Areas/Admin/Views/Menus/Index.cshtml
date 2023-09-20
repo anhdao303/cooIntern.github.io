@@ -1,0 +1,101 @@
+﻿@using Coolntern.Help
+@model IEnumerable<Coolntern.Models.Menu>
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section _Header{
+    <link href="~/Areas/Admin/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<div style="margin-left:30px">
+    <h2 style="font-weight:bold">Quản lý Menu</h2>
+
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <p style="text-align:right">
+            @Html.NoEncodeActionLink("<span class='fas fa-plus-circle'></span> Thêm mới", "Create", "Create", "Menus", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary" })
+        </p>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên Menu</th>
+                        <th>Link</th>
+                        <th>Meta</th>
+                        <th style="text-align:center">Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.link)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.meta)
+                            </td>
+
+                            <td style="text-align: center">
+                                <span>
+                                    <a href="@Url.Action("Edit", "Menus", new { id = item.id })" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i>    Sửa
+                                    </a>
+                                </span>
+
+                                <span>
+                                    <a data-target="#DeleteModal-@item.id" data-toggle="modal" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>    Xóa
+                                    </a>
+
+                                    @using (Html.BeginForm("Delete/" + item.id, "Menus", FormMethod.Post, null))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="modal form-actions" tabindex="-1" role="dialog" id="DeleteModal-@item.id">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Xác nhận xóa</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Bạn có chắc chắn muốn xóa Menu này không?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                                                        <button type="submit" class="btn btn-danger">Có</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    @section _Footer{
+
+        <!-- Page level plugins -->
+        <script src="~/Areas/Admin/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/Areas/Admin/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="~/Areas/Admin/Content/js/demo/datatables-demo.js"></script>
+    }
+

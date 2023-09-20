@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Coolntern.Models.DetailJob>
+
+@{
+    ViewBag.Title = "Công việc của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .mbtn {
+        width: 120px;
+        height: 24px;
+        color: black;
+        background-color: white;
+        border: 1px solid thin;
+        border-color: #8b92dd;
+        border-radius: 20px;
+    }
+
+        .mbtn:hover {
+            color: #fff;
+            background-color: #8b92dd;
+        }
+</style>
+
+<div class="container-fluid">
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="/Content/img/hero/about.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2 class="title">All Job You Applied</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End -->
+    <!-- Job List Area Start -->
+    <div class="job-listing-area pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <!--Left content-->
+                @{ Html.RenderAction("GetSideBar", "DetailJob");}
+
+                <!-- Right content -->
+                <div class="col-xl-9 col-lg-9 col-md-8">
+                    <!-- Featured_job_start -->
+                    <section class="featured-job-area">
+                        <div class="container">
+                            <h1 class="title">Tất cả công việc bạn đã apply</h1>
+                            <div class="data-job">
+                                @{Html.RenderAction("GetAllJobApply", "DetailJob");}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

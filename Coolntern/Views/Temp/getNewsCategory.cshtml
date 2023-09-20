@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Coolntern.Models.NCategory>
+
+@foreach (var i in Model)
+{
+    <li>
+        <a href="/@ViewBag.meta/@i.meta" class="d-flex">
+            <p>@i.name</p>
+        </a>
+    </li>
+}
+
+
